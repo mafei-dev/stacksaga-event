@@ -22,7 +22,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
@@ -90,8 +91,13 @@
 
 </head>
 <body style="margin: 0px; padding-top: 20px !important;">
-<div class="align-items-center text-center">
-    <img class="text-center" src="./assets/images/stack-SAGA-1.jpg" height="30%" width="30%" alt="" srcset="">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-4 col-lg-4 col-sm-12">
+            <img class="img-fluid" src="./assets/images/stack-SAGA-1.jpg" alt="StackSaga"
+                 srcset="">
+        </div>
+    </div>
 </div>
 <br>
 <br>
@@ -100,17 +106,8 @@
     <div class="theme-bg-shapes-right"></div>
     <div class="theme-bg-shapes-left"></div>
     <div class="container">
-        <h3 class="mb-2 text-white mb-3">Next Event</h3>
-    </div>
-    <div class="container">
-        <div class="box">
-            <div class="allTime">
-                <div class="wp days"></div>
-                <div class="wp hrs"></div>
-                <div class="wp min"></div>
-                <div class="wp sec"></div>
-            </div>
-        </div>
+        <h1 class="mb-2 text-white mb-3">Next Event</h1>
+        <h3 id="demo"></h3>
     </div>
 </div>
 
@@ -134,37 +131,32 @@
 })()</script>
 
 <script>
-    let countDownBox = document.querySelector(".allTime");
-    let daysBox = document.querySelector(".days");
-    let hrsBox = document.querySelector(".hrs");
-    let minBox = document.querySelector(".min");
-    let secBox = document.querySelector(".sec");
-    let countDownDate = new Date("Dec 31, 2022 00:01:00").getTime();
+    // Set the date we're counting down to
+    var countDownDate = new Date("Jan 5, 2024 15:37:25").getTime();
 
-    // COUNT DOWN FUNCTION
-    let x = setInterval(function () {
+    // Update the count down every 1 second
+    var x = setInterval(function () {
 
-        // GET DATE
-        let now = new Date().getTime();
+        // Get today's date and time
+        var now = new Date().getTime();
 
-        // TIME BETWEEN NOW AND DATE
-        let distance = countDownDate - now;
+        // Find the distance between now and the count down date
+        var distance = countDownDate - now;
 
-        // CALCULATION TIME
-        let days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        // Time calculations for days, hours, minutes and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        daysBox.innerHTML = days + "<span>Days</span>";
-        hrsBox.innerHTML = hours + "<span>Hours</span>";
-        minBox.innerHTML = minutes + "<span>Min</span>";
-        secBox.innerHTML = seconds + "<span>Sec</span>";
+        // Output the result in an element with id="demo"
+        document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+            + minutes + "m " + seconds + "s ";
 
-        // IF FINISH
+        // If the count down is over, write some text
         if (distance < 0) {
             clearInterval(x);
-            countDownBox.innerHTML = "¡FELICIDADES!";
+            document.getElementById("demo").innerHTML = "EXPIRED";
         }
     }, 1000);
 </script>
